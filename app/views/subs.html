@@ -1,0 +1,67 @@
+<div class="container">
+
+  <div class="row">
+    <div class="col-md-12">
+      <button ng-if="!config.showCreate" class="btn btn-sm btn-primary pull-right" style="margin-bottom: 15px" ng-click="config.showCreate = true;">New Sub</button>
+      <div class="clearfix"></div>
+    </div>
+  </div>
+
+  <div class="row" ng-if="config.showCreate">
+    <div class="col-md-12">
+
+
+        <div class="panel panel-default">
+
+          <div class="panel-body">
+            <form ng-submit="createSub(newSub)">
+              <a href="" ng-click="config.showCreate = false" class="pull-right"><i class="fa fa-times"></i></a>
+              <br>
+
+              <div class="form-group">
+                Name
+                <input type="text" ng-model="newSub.sub_name" class="form-control">
+              </div>
+
+              <div class="form-group">
+                Description
+                <textarea ng-model="newSub.description" class="form-control" cols="30" rows="10"></textarea>
+              </div>
+
+
+              <button class="btn btn-primary btn-sm pull-right" type="submit">Create Sub</button>
+              <div class="clearfix"></div>
+              <br>
+            </form>
+          </div>
+        </div>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-md-12">
+      <table class="table table-bordered" >
+        <thead>
+        <th>Name</th>
+        <th>Desc</th>
+        <th>Created by</th>
+        <th>Threads Count</th>
+        <th ng-if="user"></th>
+        </thead>
+        <thead ng-if="subs">
+        <tr ng-repeat="sub in subs track by $index">
+          <td><a ng-href="#/sub/{{sub.sub_name}}">{{sub.sub_name}}</a></td>
+          <td>{{sub.description}}</td>
+          <td><a href="#/user/{{sub.user_name}}">{{sub.user_name}}</a></td>
+          <td>{{sub.threads_count}}</td>
+          <td ng-if="user" style="text-align: right">
+            <span ng-if="!sub.subscribed" class="label label-success sub-label" ng-click="subscribeToSub(sub)"><i class="fa fa-check"></i> Subscribe</span>
+            <span ng-if="sub.subscribed" class="label label-danger sub-label" ng-click="unsubscribeToSub(sub)"><i class="fa fa-ban"></i> Unsubscribe</span>
+          </td>
+        </tr>
+        </thead>
+      </table>
+    </div>
+  </div>
+
+</div>

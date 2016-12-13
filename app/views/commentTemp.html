@@ -1,0 +1,36 @@
+<div  class="panel panel-default" ng-repeat="reply_comment in reply_comment.reply_comments | orderBy: '-total_votes'" ng-init="currentColor = !currentColor" ng-class="{'commentBackgroundEvenOdd': !currentColor}">
+  <div class="panel-body">
+
+    <div class="media">
+      <div class="media-left">
+        <vote-comment-panel comment="reply_comment"></vote-comment-panel>
+      </div>
+
+      <div class="media-body">
+        <small style="font-weight: bold"><a href="#/user/{{reply_comment.user_name}}"><span
+          style="margin-right: 3px;position: relative;top: -2px;"
+          ng-if="thread.user_id === reply_comment.user_id" class="label label-primary">OP</span>
+          {{reply_comment.user_name}}</a> - <span am-time-ago="comment.created_at | amUtc | amParse:'YYYY-MM-DD HH:mm:ss'"></span></small>
+        <p style="margin-top: 15px;word-break: break-all;" ng-bind-html="reply_comment.comment_text"></p>
+        <a style="color: #000;" href=""><small  ng-click="reply_comment.showCreate = !reply_comment.showCreate"><b>Reply</b></small></a>
+        <div class="row" ng-if="reply_comment.showCreate">
+          <div class="col-md-12">
+            <form ng-submit="$ctrl.createComment(reply_comment.newComment, reply_comment)">
+              <div class="form-group">
+                <p style="margin-top: 15px"><strong>Reply Comment</strong></p>
+                            <textarea class="form-control" name="" ng-model="reply_comment.newComment.comment_text" id=""
+                                      cols="30" rows="10"></textarea>
+                <br>
+                <button class="btn btn-primary btn-sm pull-left" type="submit">Save</button>
+                <div class="clearfix"></div>
+                <br>
+              </div>
+            </form>
+          </div>
+        </div>
+        <br>
+        <div style="margin-top: 15px" ng-include="'views/commentTemp.html'"></div>
+      </div>
+    </div>
+  </div>
+</div>

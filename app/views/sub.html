@@ -1,0 +1,111 @@
+<div>
+  <div class="row">
+    <div class="col-md-12">
+      <button ng-if="!config.showCreate" class="btn btn-sm btn-primary pull-right" style="margin-bottom: 15px"
+              ng-click="config.showCreate = true;">New Thread
+      </button>
+      <div class="clearfix"></div>
+    </div>
+  </div>
+
+  <div class="row" ng-if="config.showCreate">
+    <div class="col-md-12">
+      <div class="panel panel-default">
+        <div class="panel-body">
+          <form ng-submit="postThread(newThread)">
+
+            <a href="" ng-click="config.showCreate = false" class="pull-right"><i class="fa fa-times"></i></a>
+            <br>
+
+            <a href="" ng-click="config.createType = 'link'">Link</a>
+            -
+            <a href="" ng-click="config.createType = 'text'">Text</a>
+
+            <br><br>
+
+            <div ng-if="config.createType === 'link'">
+
+              <div class="form-group">
+                Title
+                <input ng-required="" class="form-control" ng-model="newThread.title" type="text">
+              </div>
+
+              <div class="form-group">
+                Link
+                <input ng-required="" class="form-control" ng-model="newThread.link" type="url">
+              </div>
+
+              <div class="form-group">
+                Image
+                <input class="form-control" fileread="newThread.image" name="threadImage" type="file">
+
+
+                {{newThread.image}}
+              </div>
+            </div>
+            <div ng-if="config.createType === 'text'">
+
+              <div class="form-group">
+                Title
+                <input ng-required="" class="form-control" ng-model="newThread.title" type="text">
+              </div>
+
+              <div class="form-group">
+                Text
+                <textarea ng-required="" class="form-control" ng-model="newThread.text" type="text"></textarea>
+              </div>
+            </div>
+
+            <button class="btn btn-primary btn-sm pull-right" type="submit">Create Thread</button>
+            <div class="clearfix"></div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div>
+    <h1>Threads - {{sub.sub_name}}</h1>
+    <a href=""><span ng-click="getThreads(1,'hot', true)" class="label "
+                     ng-class="{'label-primary': config.orderType === 'hot', 'label-default': config.orderType !== 'hot'}">Hot</span></a>
+    <a href=""><span ng-click="getThreads(1,'new', true)" class="label "
+                     ng-class="{'label-primary': config.orderType === 'new', 'label-default': config.orderType !== 'new'}">New</span></a>
+    <a href=""><span ng-click="getThreads(1,'top', true)" class="label "
+                     ng-class="{'label-primary': config.orderType === 'top', 'label-default': config.orderType !== 'top'}">Top</span></a>
+    <hr>
+
+
+    <div ng-if="!config.loading">
+
+      <thread ng-repeat="thread in subThreads" thread="thread" index="$index"></thread>
+
+      <h1 style="text-align: center;padding: 35px" ng-if="subThreads.length === 0">No threads</h1>
+
+
+      <div class="row">
+        <div class="col-md-12" style="text-align: center">
+          <a ng-hide="config.last_page === nextPage-1 || subThreads.length === 0" href="">
+            <h4 ng-click="getThreads(nextPage, config.orderType)">Next Page</h4>
+          </a>
+          <h4 ng-show="config.last_page === nextPage-1 || subThreads.length === 0">This is the end</h4>
+
+        </div>
+      </div>
+    </div>
+
+
+    <div ng-if="config.loading">
+      <h1 style="text-align: center;padding: 35px"><i class="fa fa-spinner fa-spin"></i></h1>
+    </div>
+
+  </div>
+</div>
+
+
+
+
+
+
+
+
+
+

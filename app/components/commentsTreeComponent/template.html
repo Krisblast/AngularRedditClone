@@ -1,0 +1,118 @@
+<div class="row">
+  <div class="col-md-12">
+    <button class="btn btn-primary btn-sm pull-right" ng-click="$ctrl.config.showCreate = !$ctrl.config.showCreate">
+      Reply
+    </button>
+  </div>
+</div>
+
+<div class="row" ng-if="$ctrl.config.showCreate">
+  <div class="col-md-12">
+    <form ng-submit="$ctrl.createComment($ctrl.newComment)">
+      <div class="form-group">
+        <p><strong>New Comment</strong></p>
+        <textarea class="form-control" name="" ng-model="$ctrl.newComment.comment_text" id="" cols="30"
+                  rows="10"></textarea>
+        <br>
+        <button class="btn btn-primary btn-sm pull-left" type="submit">Save</button>
+        <div class="clearfix"></div>
+        <br>
+      </div>
+    </form>
+  </div>
+</div>
+
+
+<div class="row">
+  <div class="col-md-12">
+    <h3>Comments</h3>
+
+    <div class="panel panel-default" ng-repeat="comment in $ctrl.comments | orderBy: '-total_votes'"
+         ng-if="comment.comment_ref_id === null">
+      <div class="panel-body">
+        <div class="media">
+          <div class="media-left">
+            <vote-comment-panel comment="comment"></vote-comment-panel>
+          </div>
+          <div class="media-body">
+
+            <small style="font-weight: bold"><a href="#/user/{{comment.user_name}}"><span
+              style="margin-right: 3px;position: relative;top: -2px;"
+              ng-if="thread.user_id === comment.user_id"
+              class="label label-primary">OP</span>
+              {{comment.user_name}}</a> - <span
+              am-time-ago="comment.created_at | amUtc | amParse:'YYYY-MM-DD HH:mm:ss'"></span></small>
+            <p style="margin-top: 15px;word-break: break-all;" ng-bind-html="comment.comment_text"></p>
+            <a style="color: #000;" href="">
+              <small ng-click="comment.showCreate = !comment.showCreate"><b>Reply</b></small>
+            </a>
+
+            <div ng-if="comment.showCreate">
+              <div class="col-md-12">
+                <form ng-submit="$ctrl.createComment(comment.newComment, comment)">
+                  <div class="form-group">
+                    <p style="margin-top: 15px"><strong>Reply Comment</strong></p>
+                    <textarea class="form-control" name="" ng-model="comment.newComment.comment_text" id="" cols="30"
+                              rows="10"></textarea>
+                    <br>
+                    <button class="btn btn-primary btn-sm pull-left" type="submit">Save</button>
+                    <div class="clearfix"></div>
+                    <br>
+                  </div>
+                </form>
+              </div>
+            </div>
+
+            <div class="row" style="margin-top: 15px">
+              <div class="col-md-12">
+                <div style="margin-bottom: 15px;background: #f1f1f1;" class="panel panel-default"
+                     ng-repeat="reply_comment in comment.reply_comments | orderBy: '-total_votes'">
+                  <div class="panel-body">
+                    <div class="media">
+                      <div class="media-left">
+                        <vote-comment-panel comment="reply_comment"></vote-comment-panel>
+                      </div>
+                      <div class="media-body">
+                        <small style="font-weight: bold"><a href="#/user/{{reply_comment.user_name}}"><span
+                          style="margin-right: 3px;position: relative;top: -2px;"
+                          ng-if="thread.user_id === reply_comment.user_id" class="label label-primary">OP</span>
+                          {{reply_comment.user_name}}</a> - <span
+                          am-time-ago="comment.created_at | amUtc | amParse:'YYYY-MM-DD HH:mm:ss'"></span></small>
+                        <p style="margin-top: 15px;word-break: break-all;"
+                           ng-bind-html="reply_comment.comment_text"></p>
+                        <a style="color: #000;" href="">
+                          <small ng-click="reply_comment.showCreate = !reply_comment.showCreate"><b>Reply</b></small>
+                        </a>
+
+                        <div class="row" ng-if="reply_comment.showCreate">
+                          <div class="col-md-12">
+                            <form ng-submit="$ctrl.createComment(reply_comment.newComment, reply_comment)">
+                              <div class="form-group">
+                                <p style="margin-top: 15px"><strong>Reply Comment</strong></p>
+                            <textarea class="form-control" name="" ng-model="reply_comment.newComment.comment_text"
+                                      id=""
+                                      cols="30" rows="10"></textarea>
+                                <br>
+                                <button class="btn btn-primary btn-sm pull-left" type="submit">Save</button>
+                                <div class="clearfix"></div>
+                                <br>
+                              </div>
+                            </form>
+                          </div>
+                        </div>
+
+                        <br>
+
+                        <div style="margin-top: 15px" ng-include="'views/commentTemp.html'"></div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

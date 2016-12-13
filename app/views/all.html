@@ -1,0 +1,22 @@
+<div >
+  <h1>All</h1>
+  <a href=""><span ng-click="getAllThreads(1,'hot', true)" class="label "
+                   ng-class="{'label-primary': config.orderType === 'hot', 'label-default': config.orderType !== 'hot'}">Hot</span></a>
+  <a href=""><span ng-click="getAllThreads(1,'new', true)" class="label "
+                   ng-class="{'label-primary': config.orderType === 'new', 'label-default': config.orderType !== 'new'}">New</span></a>
+  <a href=""><span ng-click="getAllThreads(1,'top', true)" class="label "
+                   ng-class="{'label-primary': config.orderType === 'top', 'label-default': config.orderType !== 'top'}">Top</span></a>
+  <hr>
+
+  <thread ng-repeat="thread in subscribedThreads" thread="thread" show-sub="true" index="$index"></thread>
+
+</div>
+
+<div class="row">
+  <div class="col-md-12" style="text-align: center">
+    <a href="">
+      <h4 ng-hide="config.last_page === nextPage-1 || subThreads.length === 0"  ng-click="getAllThreads(nextPage, config.orderType, false, true)">Next Page..</h4>
+      <h4 ng-show="config.last_page === nextPage-1 || subThreads.length === 0">This is the end</h4>
+    </a>
+  </div>
+</div>

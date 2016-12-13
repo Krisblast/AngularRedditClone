@@ -1,0 +1,16 @@
+<h1>{{publicUser.data.name}}</h1>
+
+<uib-tabset active="activePill">
+  <uib-tab index="0" heading="Comments">
+    <br>
+    <comments-tree-component ng-if="publicUser.comments" comments="publicUser.comments"></comments-tree-component>
+  </uib-tab>
+  <uib-tab index="1" heading="Threads">
+    <thread ng-repeat="thread in publicUserThreads" thread="thread" show-sub="true" index="$index"></thread>
+    <div class="row">
+      <div class="col-md-12">
+        <h3 ng-click="getUserThreads(publicUser.data.id, threadPageNumber)">Load more</h3>
+      </div>
+    </div>
+  </uib-tab>
+</uib-tabset>

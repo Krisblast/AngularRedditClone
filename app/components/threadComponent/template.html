@@ -1,0 +1,44 @@
+<div class="panel panel-default">
+  <div style="margin-top: 20px;margin-left: 20px;margin-right: 20px;text-align: center"
+       ng-if="($ctrl.index) % 25 === 0 && ($ctrl.index / 25) > 0" class="well">Page {{(($ctrl.index) / 25)+1}}
+  </div>
+  <div class="panel-body">
+    <div class="media">
+      <div class="media-left" style="    position: relative;
+    top: 39px;
+    font-size: 17px;">
+        {{$ctrl.index+1}}
+      </div>
+      <div class="media-left">
+        <vote-panel thread="$ctrl.thread"></vote-panel>
+      </div>
+      <div class="media-left">
+        <a ng-if="$ctrl.thread.text == null" ng-href="{{$ctrl.thread.link}}">
+          <img class="media-object" style="width: 140px" ng-src="{{$ctrl.thread.image || 'images/default-thumbnail.jpg'}}"
+               alt="...">
+        </a>
+        <a ng-if="$ctrl.thread.text != null" ng-href="#/sub/{{$ctrl.thread.sub_id}}/comments/{{$ctrl.thread.id}}">
+          <img class="media-object" style="width: 140px" src="images/default-text-thread.png" alt="...">
+        </a>
+      </div>
+      <div class="media-body">
+        <a target="_blank" ng-if="$ctrl.thread.link" ng-href="{{$ctrl.thread.link}}"><h3>{{$ctrl.thread.title}}</h3></a>
+        <a ng-if="!$ctrl.thread.link" ng-href="#/sub/{{$ctrl.thread.sub_id}}/comments/{{$ctrl.thread.id}}"><h3>{{$ctrl.thread.title}}</h3>
+        </a>
+      </div>
+    </div>
+  </div>
+  <div class="panel-footer">
+    <small ng-if="$ctrl.showSub" style="margin-left: 8px" class="pull-right">- <a href="#/sub/{{$ctrl.thread.sub_name}}">sub/{{$ctrl.thread.sub_name}}</a></small>
+    <small ng-if="$ctrl.showComment" class="pull-left"><a ng-href="#/sub/{{$ctrl.thread.sub_id}}/comments/{{$ctrl.thread.id}}">Comments
+      ({{$ctrl.thread.comment_count}})</a></small>
+
+    <small class="pull-right">Created by <a href="#/user/{{$ctrl.thread.user_name}}">{{$ctrl.thread.user_name}}</a> -
+      <span am-time-ago="$ctrl.thread.created_at | amUtc | amParse:'YYYY-MM-DD HH:mm:ss' "></span>
+    </small>
+    <div class="clearfix"></div>
+  </div>
+</div>
+
+
+

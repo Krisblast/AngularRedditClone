@@ -1,0 +1,8 @@
+<div style="text-align: center;position: relative;top: 9px;">
+  <i ng-click="$ctrl.upVote($ctrl.thread)" ng-class="{'highlightVoteUp': $ctrl.thread.vote_type === 1}"
+     class="fa fa-arrow-circle-up fa-2x"></i>
+  <p style="position: relative;top: 3px;"><strong>{{$ctrl.thread.total_votes}}</strong></p>
+  <i ng-click="$ctrl.downVote($ctrl.thread)" ng-class="{'highlightVoteDown': $ctrl.thread.vote_type === 0}"
+     class="fa fa-arrow-circle-down fa-2x"></i>
+</div>
+
