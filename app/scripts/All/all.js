@@ -38,7 +38,7 @@ angular.module('appApp')
 
         }
         $scope.subscribedThreads = $scope.subscribedThreads.concat(response.data.data);
-      })
+      });
     };
 
 

@@ -18,11 +18,11 @@ angular.module('appApp')
     $scope.nextPage = 1;
     $scope.subscribedThreads = [];
 
-    $scope.getSubscribedThreads = function (page, orderType) {
+    $scope.getSubscribedThreads = function (page) {
       $http.get('http://laravel-jwt.app/api/restricted/sub/subscribed?page=' + page).success(function (response) {
         $scope.nextPage += 1;
         $scope.subscribedThreads = $scope.subscribedThreads.concat(response.data.data);
-      })
+      });
     };
 
 

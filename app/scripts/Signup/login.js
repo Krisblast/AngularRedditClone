@@ -13,14 +13,13 @@ angular.module('appApp')
     $scope.userCreds = {};
 
     function saveToken(token){
-      $window.localStorage['jwtToken'] = token;
+      $window.localStorage.jwtToken = token;
     }
 
-    function getToken(){
-      return $window.localStorage['jwtToken'];
-    }
+    //function getToken(){
+    //  return $window.localStorage.jwtToken;
+    //}
 
-    console.log(getToken());
 
     $scope.loginUser = function (user) {
       $http.post('http://laravel-jwt.app/api/login', user).success(function (response) {
@@ -29,10 +28,6 @@ angular.module('appApp')
         $window.location.reload();
         //TODO make something smarter here.. maybe return user on login.. doesnt matter right now since we just reload the app..
 
-        $http.get('http://laravel-jwt.app/api/restricted/subscribe').success(function (response) {
-          console.log(response);
-          $rootScope.user.subscriptions = response.data;
-        })
 
 
       }).error(function (error) {

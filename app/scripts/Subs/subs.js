@@ -19,12 +19,11 @@ angular.module('appApp')
 
     $scope.createSub = function (newSub) {
       $http.post('http://laravel-jwt.app/api/restricted/sub', newSub).success(function (response) {
-        console.log(response)
         $scope.subs.push(response.data);
         $scope.config.showCreate = false;
         $scope.newSub = {};
       }).error(function () {
-      })
+      });
     };
 
     function getSubs() {
@@ -42,30 +41,25 @@ angular.module('appApp')
               if (sub.id === subscription.sub_id) {
                 sub.subscribed = true;
               }
-            })
-          })
-
-        })
-      })
+            });
+          });
+        });
+      });
     }
 
     function getUserSubscriptions(){
       $http.get('http://laravel-jwt.app/api/restricted/subscribe').success(function (response) {
-        console.log(response);
         $rootScope.user.subscriptions = response.data;
-      })
+      });
     }
 
 
-
-
     $scope.subscribeToSub = function (sub) {
-      $http.post('http://laravel-jwt.app/api/restricted/subscribe', {sub_id: sub.id}).success(function (response) {
-        console.log(response);
+      $http.post('http://laravel-jwt.app/api/restricted/subscribe', {sub_id: sub.id}).success(function () {
         sub.subscribed = true;
         getUserSubscriptions();
       }).error(function () {
-      })
+      });
     };
 
     $scope.unsubscribeToSub = function (sub) {
@@ -74,7 +68,7 @@ angular.module('appApp')
         sub.subscribed = false;
         getUserSubscriptions();
       }).error(function () {
-      })
+      });
     };
 
     getSubs();

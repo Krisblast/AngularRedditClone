@@ -24,7 +24,7 @@ angular.module('appApp')
         $scope.thread = response.data;
         console.log(response);
         $scope.config.loading = false;
-      })
+      });
     }
 
     getThread();
@@ -35,7 +35,7 @@ angular.module('appApp')
       $http.get('http://laravel-jwt.app/api/comment/thread/' + $routeParams.thread_id).success(function (response) {
         $scope.comments = response.data;
         $scope.config.loading = false;
-      })
+      });
     }
 
 
@@ -56,12 +56,11 @@ angular.module('appApp')
         angular.forEach($scope.comments, function (comment) {
           comment.reply_comments = [];
 
-          getReplyComments(comment)
         });
 
 
       }).error(function (error) {
         console.log(error);
-      })
-    }
+      });
+    };
   });

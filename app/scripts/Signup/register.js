@@ -13,13 +13,9 @@ angular.module('appApp')
     $scope.newUser={};
 
     $scope.createUser = function (newUser) {
-      $http.post('http://laravel-jwt.app/api/register', newUser).success(function (response) {
+      $http.post('http://laravel-jwt.app/api/register', newUser).success(function () {
         $scope.newUser={};
-
-
-
       }).error(function (error) {
-        console.log(error)
         $scope.errors = error.errors;
       });
     };
