@@ -1,0 +1,59 @@
+<div class="row">
+  <div class="col-md-12">
+    <button ng-if="!$ctrl.config.showCreate" class="btn btn-sm btn-primary pull-right" style="margin-bottom: 15px"
+            ng-click="$ctrl.config.showCreate = true;">New Thread
+    </button>
+    <div class="clearfix"></div>
+  </div>
+</div>
+
+<div class="row" ng-if="$ctrl.config.showCreate">
+  <div class="col-md-12">
+    <div class="panel panel-default">
+      <div class="panel-body">
+        <form ng-submit="$ctrl.postThread($ctrl.newThread)">
+          <a href="" ng-click="$ctrl.config.showCreate = false" class="pull-right"><i class="fa fa-times"></i></a>
+          <br>
+          <a href="" ng-click="$ctrl.config.createType = 'link'">Link</a>
+          -
+          <a href="" ng-click="$ctrl.config.createType = 'text'">Text</a>
+          <br><br>
+
+          <div ng-if="$ctrl.config.createType === 'link'">
+
+            <div class="form-group">
+              Title
+              <input ng-required="" class="form-control" ng-model="$ctrl.newThread.title" type="text">
+            </div>
+
+            <div class="form-group">
+              Link
+              <input ng-required="" class="form-control" ng-model="$ctrl.newThread.link" type="url">
+            </div>
+
+            <div class="form-group">
+              Image
+              <input class="form-control" fileread="newThread.image" name="threadImage" type="file">
+              {{$ctrl.newThread.image}}
+            </div>
+          </div>
+          <div ng-if="$ctrl.config.createType === 'text'">
+
+            <div class="form-group">
+              Title
+              <input ng-required="" class="form-control" ng-model="$ctrl.newThread.title" type="text">
+            </div>
+
+            <div class="form-group">
+              Text
+              <textarea ng-required="" class="form-control" ng-model="$ctrl.newThread.text" type="text"></textarea>
+            </div>
+          </div>
+
+          <button class="btn btn-primary btn-sm pull-right" type="submit">Create Thread</button>
+          <div class="clearfix"></div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>

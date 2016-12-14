@@ -58,18 +58,6 @@ angular.module('appApp')
     };
 
 
-    $scope.postThread = function (newThread) {
-      $http.post('http://laravel-jwt.app/api/restricted/thread', newThread).success(function (response) {
-        $scope.subThreads.push(response.data);
-        $scope.config.showCreate = false;
-
-        $scope.newThread = {
-          sub_id: $scope.sub.id
-        };
-
-        console.log(response);
-      })
-    };
 
 
 
