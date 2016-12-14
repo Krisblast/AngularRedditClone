@@ -112,9 +112,9 @@ body {
   font-weight: normal;
   font-size: 12px;
   display: inline-block;
-  background: white;
+  background: none;
   color: black;
-  border: 1px solid #bbbbbb;
+  /* border: 1px solid #bbbbbb; */
 }
 
 .sub-btn-active {
@@ -123,8 +123,10 @@ body {
   font-weight: normal;
   font-size: 12px;
   display: inline-block;
-  background: white;
+  background: none;
   color: black;
-  border: 1px solid #bbbbbb;
-  text-decoration: underline;
+  /* border: 1px solid #bbbbbb; */
+  /* text-decoration: underline; */
+  font-weight: bold;
+  color: #ff8a5e;
 }
