@@ -15,7 +15,6 @@ angular.module('appApp')
       }
 
     },
-    transclude: true,
     bindings: {
       thread: '=',
       index: '=?',
