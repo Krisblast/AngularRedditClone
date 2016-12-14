@@ -69,17 +69,7 @@
 </div>
 
 <div class="container-fluid">
-  <div class="well" style="border-top: 0;border-radius: 0;text-align: center">
-    <a ng-href="#/all"><span class="label"
-                             ng-class="{'label-primary': activePage === 'sub/all', 'label-info': activePage !== 'sub/all'}"
-                             style="margin-left: 8px;display: inline-block">All</span></a>
-    <a ng-if="user" ng-href="#/"><span class="label"
-                                       ng-class="{'label-primary': activePage === 'sub/frontpage', 'label-info': activePage !== 'sub/frontpage'}"
-                                       style="margin-left: 8px;display: inline-block">Frontpage</span></a>
-    <a ng-repeat="subscription in user.subscriptions" ng-href="#/sub/{{subscription.sub_name}}"><span class="label "
-                                                                                                      ng-class="{'label-primary': activePage === 'sub/'+ subscription.sub_id, 'label-info': activePage !== 'sub/'+ subscription.sub_id}"
-                                                                                                      style="margin-left: 8px;display: inline-block">{{subscription.sub_name}}</span></a>
-  </div>
+  <subscriptions-bar></subscriptions-bar>
 </div>
 <div class="container-fluid">
 
@@ -140,6 +130,8 @@
 <script src="components/voteComponent/voteComponent.js"></script>
 <script src="components/voteCommentComponent/voteCommentComponent.js"></script>
 <script src="components/commentsTreeComponent/commentsTreeComponent.js"></script>
+<script src="components/subscriptionsBarComponent/subscriptionsBarComponent.js"></script>
+
 <!-- endbuild -->
 </body>
 </html>

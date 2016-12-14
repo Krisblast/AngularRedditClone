@@ -108,14 +108,15 @@ angular
   //TODO Make some magic with redirect route on unauth
 
   .run(function ($http,$window,$rootScope) {
-    $rootScope.user = {
-      subscriptions: []
-    };
     if($window.localStorage['jwtToken']){
       console.log('we have a token, now try to get user');
       $http.defaults.headers.common['Authorization'] = 'Bearer ' + $window.localStorage['jwtToken'];
       $http.get('http://laravel-jwt.app/api/restricted/user').success(function (response) {
+
+        response.subscriptions = [];
         $rootScope.user = response;
+
+
       }).error(function (error) {
         console.log(error);
         $rootScope.user = null;
@@ -123,10 +124,6 @@ angular
       });
     }
 
-    $http.get('http://laravel-jwt.app/api/restricted/subscribe').success(function (response) {
-      console.log(response);
-      $rootScope.user.subscriptions = response.data;
-    })
 
 
 

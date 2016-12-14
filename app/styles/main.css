@@ -105,3 +105,26 @@ body {
   cursor: pointer;
   opacity: 0.8;
 }
+
+.sub-btn {
+  margin-left: 8px;
+  padding: 8px;
+  font-weight: normal;
+  font-size: 12px;
+  display: inline-block;
+  background: white;
+  color: black;
+  border: 1px solid #bbbbbb;
+}
+
+.sub-btn-active {
+  margin-left: 8px;
+  padding: 8px;
+  font-weight: normal;
+  font-size: 12px;
+  display: inline-block;
+  background: white;
+  color: black;
+  border: 1px solid #bbbbbb;
+  text-decoration: underline;
+}

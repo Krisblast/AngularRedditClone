@@ -43,7 +43,6 @@ angular.module('appApp')
 
 
     if ($location.search().page) {
-      console.log($location.search().page)
       $scope.nextPage = parseInt($location.search().page);
 
       $scope.nextPage += 1;
@@ -53,7 +52,6 @@ angular.module('appApp')
 
       for (var i = 1; i < $location.search().page; i++) {
           $scope.getAllThreads(i+1, $scope.config.orderType, false, false);
-          console.log(i+1)
       }
 
 
