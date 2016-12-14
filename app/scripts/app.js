@@ -21,13 +21,8 @@ angular
   ])
   .config(function ($routeProvider) {
     $routeProvider
-      .when('/all', {
-        templateUrl: 'views/all.html',
-        controller: 'AllCtrl',
-        controllerAs: 'all'
-      })
       .when('/', {
-        templateUrl: 'views/frontpage.html',
+        templateUrl: 'scripts/Frontpage/frontpage.html',
         controller: 'FrontpageCtrl',
         controllerAs: 'frontpage',
         resolve: {
@@ -40,7 +35,7 @@ angular
         }
       })
       .when('/user/:user_id', {
-        templateUrl: 'views/publicUser.html',
+        templateUrl: 'scripts/PublicUser/publicUser.html',
         controller: 'PublicUserCtrl',
         controllerAs: 'publicUser',
         resolve: {
@@ -50,7 +45,7 @@ angular
         }
       })
       .when('/login', {
-        templateUrl: 'views/login.html',
+        templateUrl: 'scripts/Signup/login.html',
         controller: 'LoginCtrl',
         controllerAs: 'login',
         resolve: {
@@ -60,7 +55,7 @@ angular
         }
       })
       .when('/register', {
-        templateUrl: 'views/register.html',
+        templateUrl: 'scripts/Signup/register.html',
         controller: 'RegisterCtrl',
         controllerAs: 'register',
         resolve: {
@@ -70,7 +65,7 @@ angular
         }
       })
       .when('/subs', {
-        templateUrl: 'views/subs.html',
+        templateUrl: 'scripts/Subs/subs.html',
         controller: 'SubsCtrl',
         controllerAs: 'subs',
         resolve: {
@@ -81,20 +76,20 @@ angular
       })
 
       .when('/all', {
-        templateUrl: 'views/all.html',
+        templateUrl: 'scripts/All/all.html',
         controller: 'AllCtrl',
         controllerAs: 'all',
         reloadOnSearch:false
       })
 
       .when('/sub/:id', {
-        templateUrl: 'views/sub.html',
-        controller: 'SubCtrl',
-        controllerAs: 'sub'
+        templateUrl: 'scripts/Threads/threads.html',
+        controller: 'ThreadsCtrl',
+        controllerAs: 'threads'
       })
 
       .when('/sub/:id/comments/:thread_id', {
-        templateUrl: 'views/comments.html',
+        templateUrl: 'scripts/Comments/comments.html',
         controller: 'CommentsCtrl',
         controllerAs: 'comment'
       })
@@ -113,7 +108,9 @@ angular
   //TODO Make some magic with redirect route on unauth
 
   .run(function ($http,$window,$rootScope) {
-    $rootScope.user = null;
+    $rootScope.user = {
+      subscriptions: []
+    };
     if($window.localStorage['jwtToken']){
       console.log('we have a token, now try to get user');
       $http.defaults.headers.common['Authorization'] = 'Bearer ' + $window.localStorage['jwtToken'];
@@ -125,7 +122,6 @@ angular
 
       });
     }
-
 
     $http.get('http://laravel-jwt.app/api/restricted/subscribe').success(function (response) {
       console.log(response);

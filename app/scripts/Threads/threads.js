@@ -8,7 +8,7 @@
  * Controller of the appApp
  */
 angular.module('appApp')
-  .controller('SubCtrl', function ($scope, $http, $routeParams, $rootScope) {
+  .controller('ThreadsCtrl', function ($scope, $http, $routeParams, $rootScope) {
 
 
     $scope.nextPage = 1;
