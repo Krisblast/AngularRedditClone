@@ -12,7 +12,7 @@ angular.module('appApp')
 
 
     $scope.config = {
-      showCreate:false
+      showCreate: false
     };
 
     $scope.newSub = {};
@@ -47,7 +47,7 @@ angular.module('appApp')
       });
     }
 
-    function getUserSubscriptions(){
+    function getUserSubscriptions() {
       $http.get('http://laravel-jwt.app/api/restricted/subscribe').success(function (response) {
         $rootScope.user.subscriptions = response.data;
       });
