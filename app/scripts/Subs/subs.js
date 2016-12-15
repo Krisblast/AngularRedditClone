@@ -8,7 +8,7 @@
  * Controller of the appApp
  */
 angular.module('appApp')
-  .controller('SubsCtrl', function ($scope, $http, $rootScope) {
+  .controller('SubsCtrl', function ($scope, $http, $rootScope, subscribeService, subsService) {
 
 
     $scope.config = {
@@ -18,19 +18,18 @@ angular.module('appApp')
     $scope.newSub = {};
 
     $scope.createSub = function (newSub) {
-      $http.post('http://laravel-jwt.app/api/restricted/sub', newSub).success(function (response) {
+      subsService.createSub(newSub).then(function (response) {
         $scope.subs.push(response.data);
         $scope.config.showCreate = false;
         $scope.newSub = {};
-      }).error(function () {
       });
     };
 
     function getSubs() {
-      $http.get('http://laravel-jwt.app/api/sub').success(function (response) {
+      subsService.getSubs().then(function (response) {
         $scope.subs = response.data;
-        console.log(response);
-      }).then(function () {
+
+        //FIXME plz
         $http.get('http://laravel-jwt.app/api/restricted/subscribe').success(function (response) {
           console.log(response);
           $rootScope.user.subscriptions = response.data;
@@ -47,27 +46,17 @@ angular.module('appApp')
       });
     }
 
-    function getUserSubscriptions() {
-      $http.get('http://laravel-jwt.app/api/restricted/subscribe').success(function (response) {
-        $rootScope.user.subscriptions = response.data;
-      });
-    }
 
 
     $scope.subscribeToSub = function (sub) {
-      $http.post('http://laravel-jwt.app/api/restricted/subscribe', {sub_id: sub.id}).success(function () {
+      subscribeService.subscribeToSub(sub.id).then(function () {
         sub.subscribed = true;
-        getUserSubscriptions();
-      }).error(function () {
       });
     };
 
     $scope.unsubscribeToSub = function (sub) {
-      $http.delete('http://laravel-jwt.app/api/restricted/subscribe/' + sub.id).success(function (response) {
-        console.log(response);
+      subscribeService.unsubscribeToSub(sub.id).then(function () {
         sub.subscribed = false;
-        getUserSubscriptions();
-      }).error(function () {
       });
     };
 

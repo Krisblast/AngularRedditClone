@@ -8,26 +8,28 @@
  * Controller of the appApp
  */
 angular.module('appApp')
-  .controller('CommentsCtrl', function ($http, $scope, $routeParams) {
+  .controller('CommentsCtrl', function ($scope, $routeParams, threadsService, commentsService) {
     $scope.config = {
       loading: true
     };
 
-    function getThread() {
-      $http.get('http://laravel-jwt.app/api/thread/' + $routeParams.thread_id + '/detail').success(function (response) {
+    function getThread(thread_id) {
+      threadsService.getThreadDetail(thread_id).then(function (response) {
         $scope.thread = response.data;
         $scope.config.loading = false;
       });
     }
 
-    getThread();
 
-    function getComments() {
-      $http.get('http://laravel-jwt.app/api/comment/thread/' + $routeParams.thread_id).success(function (response) {
+    function getComments(thread_id) {
+      commentsService.getComments(thread_id).then(function (response) {
         $scope.comments = response.data;
         $scope.config.loading = false;
       });
     }
 
-    getComments();
+
+    getThread($routeParams.thread_id);
+    getComments($routeParams.thread_id);
+
   });

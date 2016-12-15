@@ -3,11 +3,13 @@ angular.module('appApp')
     templateUrl: 'components/voteCommentComponent/template.html',
     controller: function($scope,$http){
 
+
+      //TODO Move Vote to stuff directive?
       this.upVote = function (comment) {
         var data = {
           comment_id: comment.id
         };
-        $http.post('http://laravel-jwt.app/api/restricted/vote/up', data).success(function (response) {
+        $http.post('http://laravel-jwt.app/api/restricted/vote/up', data).success(function () {
           if(comment.vote_type === 0){
             comment.total_votes += 2;
           }
@@ -25,12 +27,12 @@ angular.module('appApp')
       };
 
       this.downVote = function (comment) {
-
         var data = {
           comment_id: comment.id
         };
-        $http.post('http://laravel-jwt.app/api/restricted/vote/down', data).success(function (response) {
+        $http.post('http://laravel-jwt.app/api/restricted/vote/down', data).success(function () {
           if(comment.vote_type === 0){
+
           }
           if(comment.vote_type === 1){
             comment.total_votes -= 2;
@@ -46,6 +48,6 @@ angular.module('appApp')
 
     },
     bindings: {
-      comment: '='
+      comment: '<'
     }
   });

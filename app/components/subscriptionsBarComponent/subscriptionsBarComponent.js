@@ -7,7 +7,5 @@ angular.module('appApp')
         console.log(response);
         $ctrl.subscriptions = response.data;
       })
-    },
-    bindings: {
     }
   });

@@ -8,7 +8,7 @@
  * Controller of the appApp
  */
 angular.module('appApp')
-  .controller('ThreadsCtrl', function ($scope, $http, $routeParams, $rootScope) {
+  .controller('ThreadsCtrl', function ($scope, $http, $routeParams, $rootScope, threadsService) {
 
 
     $scope.nextPage = 1;
@@ -41,20 +41,21 @@ angular.module('appApp')
 
     $scope.getThreads = function (page, orderType, resetData) {
       $scope.nextPage += 1;
-      $http.get('http://laravel-jwt.app/api/thread/' + $scope.sub.id + '?page=' + page + '&order=' + orderType).success(function (response) {
+      threadsService.getThreadsForSub($scope.sub.id,page, orderType).then(function (response) {
         $scope.config.orderType = orderType;
         $scope.config.last_page = response.data.last_page;
         if (resetData) {
           $scope.subThreads = [];
           $scope.nextPage = 1;
-
         }
         $scope.subThreads = $scope.subThreads.concat(response.data.data);
         console.log(response);
         $scope.config.loading = false;
+
       });
     };
   })
+  
   .directive("fileread", [function () {
     return {
       scope: {

@@ -8,7 +8,7 @@
  * Controller of the appApp
  */
 angular.module('appApp')
-  .controller('AllCtrl', function ($scope, $http, $rootScope, $location) {
+  .controller('AllCtrl', function ($scope, $rootScope, $location, threadsService) {
 
     $rootScope.activePage = 'sub/all';
     $scope.subscribedThreads = [];
@@ -18,21 +18,22 @@ angular.module('appApp')
     };
 
     $scope.getAllThreads = function (page, orderType, resetData, setPage) {
-
       if (setPage) {
         $scope.nextPage += 1;
         $location.search('page', page);
       }
 
-      $http.get('http://laravel-jwt.app/api/thread?page=' + page + '&order=' + orderType).success(function (response) {
+      threadsService.getAllThreads(page, orderType).then(function (response) {
         $scope.config.orderType = orderType;
         $scope.config.last_page = response.data.last_page;
+
         if (resetData) {
           $scope.subscribedThreads = [];
           $scope.nextPage = 1;
         }
         $scope.subscribedThreads = $scope.subscribedThreads.concat(response.data.data);
       });
+
     };
 
 

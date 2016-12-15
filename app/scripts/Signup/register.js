@@ -8,15 +8,17 @@
  * Controller of the appApp
  */
 angular.module('appApp')
-  .controller('RegisterCtrl', function ($scope, $http) {
+  .controller('RegisterCtrl', function ($scope, authService) {
 
     $scope.newUser={};
 
     $scope.createUser = function (newUser) {
-      $http.post('http://laravel-jwt.app/api/register', newUser).success(function () {
+      authService.createUser(newUser).then(function () {
         $scope.newUser={};
-      }).error(function (error) {
+
+      }).then(function (error) {
         $scope.errors = error.errors;
       });
     };
+
   });

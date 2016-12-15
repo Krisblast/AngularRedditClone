@@ -1,14 +1,13 @@
 angular.module('appApp')
 
   .component('votePanel', {
-    templateUrl: 'components/voteComponent/template.html',
+    templateUrl: 'components/votePanelComponent/template.html',
     controller: function($http){
 
+      //TODO Move Vote to stuff directive?
       this.upVote = function (thread) {
 
         console.log(thread)
-
-
         var data = {
           thread_id: thread.id
         };

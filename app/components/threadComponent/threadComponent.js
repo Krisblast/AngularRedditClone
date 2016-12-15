@@ -16,9 +16,9 @@ angular.module('appApp')
 
     },
     bindings: {
-      thread: '=',
-      index: '=?',
-      showComment: '=?',
-      showSub: '=?'
+      thread: '<',
+      index: '<?',
+      showComment: '<?',
+      showSub: '<?'
     }
   });

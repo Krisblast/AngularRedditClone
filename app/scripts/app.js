@@ -17,8 +17,17 @@ angular
     'ngSanitize',
     'ngTouch',
     'angularMoment',
-    'ui.bootstrap'
+    'ui.bootstrap',
+    'users.api',
+    'auth.api',
+    'subscribe.api',
+    'subs.api',
+    'threads.api',
+    'comments.api'
   ])
+  .value('api', {
+    domain: 'http://laravel-jwt.app/api/'
+  })
   .config(function ($routeProvider) {
     $routeProvider
       .when('/', {

@@ -17,16 +17,15 @@
 
       <h1 style="text-align: center;padding: 35px" ng-if="subThreads.length === 0">No threads</h1>
 
-
       <div class="row">
         <div class="col-md-12" style="text-align: center">
           <a ng-hide="config.last_page === nextPage-1 || subThreads.length === 0" href="">
             <h4 ng-click="getThreads(nextPage, config.orderType)">Next Page</h4>
           </a>
           <h4 ng-show="config.last_page === nextPage-1 || subThreads.length === 0">This is the end</h4>
-
         </div>
       </div>
+
     </div>
 
 

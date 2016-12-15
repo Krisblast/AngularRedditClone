@@ -8,45 +8,29 @@
  * Controller of the appApp
  */
 angular.module('appApp')
-  .controller('LoginCtrl', function ($scope, $http, $window) {
+  .controller('LoginCtrl', function ($scope, $window, authService) {
 
     $scope.userCreds = {};
 
-    function saveToken(token){
+    function saveToken(token) {
       $window.localStorage.jwtToken = token;
     }
 
-    //function getToken(){
-    //  return $window.localStorage.jwtToken;
-    //}
-
-
     $scope.loginUser = function (user) {
-      $http.post('http://laravel-jwt.app/api/login', user).success(function (response) {
+      authService.loginUser(user).then(function (response) {
         console.log(response);
         saveToken(response.token);
         $window.location.reload();
-        //TODO make something smarter here.. maybe return user on login.. doesnt matter right now since we just reload the app..
-
-
-
-      }).error(function (error) {
-        console.log(error);
       });
     };
+
 
     $scope.logoutUser = function () {
-      $http.get('http://laravel-jwt.app/api/restricted/logout').success(function (response) {
+      authService.logoutUser().then(function () {
         console.log('logout success');
-        console.log(response);
         saveToken(null);
-
         $window.location.reload();
-
-      }).error(function (error) {
-        console.log(error);
       });
     };
-
 
   });
