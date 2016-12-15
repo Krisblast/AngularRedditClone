@@ -19,6 +19,6 @@ angular.module('appApp')
       thread: '<',
       index: '<?',
       showComment: '<?',
-      showSub: '<?'
+      showSub: '=?'
     }
   });

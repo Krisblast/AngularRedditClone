@@ -14,17 +14,24 @@ angular.module('appApp')
 
       $ctrl.postThread = function (newThread) {
         $ctrl.newThread.sub_id = $ctrl.subId;
+
+
         $http.post('http://laravel-jwt.app/api/restricted/thread', newThread).success(function (response) {
           $ctrl.subThreads.push(response.data);
+
+
+
+
           $ctrl.config.showCreate = false;
           $ctrl.newThread = {
             sub_id: $ctrl.subId
           };
-        })
+        });
+
       };
     },
     bindings: {
-      subThreads: '=?',
-      subId: '='
+      subThreads: '<?',
+      subId: '<'
     }
   });
