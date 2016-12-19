@@ -1,0 +1,9 @@
+<div class="row">
+  <div class="col-md-12" style="text-align: center">
+    <a ng-hide="$ctrl.config.last_page === $ctrl.nextPage-1 || $ctrl.threads.length === 0" style="cursor: pointer" >
+      <h4 ng-click="$ctrl.getThreads($ctrl.nextPage, 'hot', false, true)">Next Page..</h4>
+    </a>
+    <h4 ng-show="$ctrl.config.last_page === $ctrl.nextPage-1 || $ctrl.threads.length === 0">This is the end</h4>
+  </div>
+</div>
+

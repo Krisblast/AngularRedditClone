@@ -1,7 +1,8 @@
 <div class="panel panel-default">
-  <div style="margin-top: 20px;margin-left: 20px;margin-right: 20px;text-align: center"
+  <div id="page{{(($ctrl.index) / 25)+1}}" style="margin-top: 20px;margin-left: 20px;margin-right: 20px;text-align: center"
        ng-if="($ctrl.index) % 25 === 0 && ($ctrl.index / 25) > 0" class="well">Page {{(($ctrl.index) / 25)+1}}
   </div>
+
   <div class="panel-body">
     <div class="media">
       <div class="media-left" style="    position: relative;
@@ -14,7 +15,7 @@
       </div>
       <div class="media-left">
         <a ng-if="$ctrl.thread.text == null" ng-href="{{$ctrl.thread.link}}">
-          <img class="media-object" style="width: 140px" ng-src="{{$ctrl.thread.image || 'images/default-thumbnail.jpg'}}"
+          <img class="media-object" style="width: 140px;height: 105px;" ng-src="{{$ctrl.thread.image || $ctrl.thread.link || 'images/default-thumbnail.jpg'}}"
                alt="...">
         </a>
         <a ng-if="$ctrl.thread.text != null" ng-href="#/sub/{{$ctrl.thread.sub_id}}/comments/{{$ctrl.thread.id}}">

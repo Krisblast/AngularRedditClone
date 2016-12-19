@@ -2,9 +2,12 @@ angular.module('appApp')
 
   .component('thread', {
     templateUrl: 'components/threadComponent/template.html',
-    controller: function(){
+    controller: function($routeParams){
 
       var $ctrl = this;
+
+
+      $ctrl.currentPage = $routeParams.page;
 
 
       if($ctrl.showComment === undefined){

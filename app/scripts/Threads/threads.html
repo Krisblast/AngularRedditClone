@@ -1,7 +1,6 @@
 <div>
   <create-thread-form ng-if="sub" sub-threads="subThreads" sub-id="sub.id"></create-thread-form>
   <div>
-    <h1>Threads - {{sub.sub_name}}</h1>
     <a href=""><span ng-click="getThreads(1,'hot', true)" class="label "
                      ng-class="{'label-primary': config.orderType === 'hot', 'label-default': config.orderType !== 'hot'}">Hot</span></a>
     <a href=""><span ng-click="getThreads(1,'new', true)" class="label "
@@ -10,28 +9,26 @@
                      ng-class="{'label-primary': config.orderType === 'top', 'label-default': config.orderType !== 'top'}">Top</span></a>
     <hr>
 
+    <div class="row">
+      <div class="col-md-9">
 
-    <div ng-if="!config.loading">
+        <div ng-if="ready">
+          <thread  ng-repeat="thread in subThreads" thread="thread" index="$index"></thread>
+          <pager  type="'sub'" threads="subThreads" sub-id="sub.id"></pager>
+        </div>
 
-      <thread ng-repeat="thread in subThreads" thread="thread" index="$index"></thread>
 
-      <h1 style="text-align: center;padding: 35px" ng-if="subThreads.length === 0">No threads</h1>
-
-      <div class="row">
-        <div class="col-md-12" style="text-align: center">
-          <a ng-hide="config.last_page === nextPage-1 || subThreads.length === 0" href="">
-            <h4 ng-click="getThreads(nextPage, config.orderType)">Next Page</h4>
-          </a>
-          <h4 ng-show="config.last_page === nextPage-1 || subThreads.length === 0">This is the end</h4>
+        <div ng-if="config.loading">
+          <h1 style="text-align: center;padding: 35px"><i class="fa fa-spinner fa-spin"></i></h1>
         </div>
       </div>
-
+      <div class="col-md-3">
+        <sidebar sub="sub">
+          <create-thread-form ng-if="sub" sub-threads="subThreads" sub-id="sub.id"></create-thread-form>
+        </sidebar>
+      </div>
     </div>
 
-
-    <div ng-if="config.loading">
-      <h1 style="text-align: center;padding: 35px"><i class="fa fa-spinner fa-spin"></i></h1>
-    </div>
 
   </div>
 </div>

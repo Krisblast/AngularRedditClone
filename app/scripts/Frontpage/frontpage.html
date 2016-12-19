@@ -1,13 +1,25 @@
 <div>
-  <h1>Subscribed Threads "/all"</h1>
   <hr>
-  <thread ng-repeat="thread in subscribedThreads" thread="thread" show-sub="true" index="$index"></thread>
+
+
+  <div class="row">
+    <div class="col-md-9">
+      <thread ng-repeat="thread in subscribedThreads" thread="thread" show-sub="true" index="$index"></thread>
+
+    </div>
+    <div class="col-md-3">
+      <sidebar sub="{sub_name: 'Frontpage'}">
+      </sidebar>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-md-9" style="text-align: center">
+      <a href="">
+        <h4 ng-hide="config.last_page === nextPage-1 || subThreads.length === 0"  ng-click="getSubscribedThreads(nextPage, config.orderType)">Next Page..</h4>
+      </a>
+    </div>
+  </div>
+
 </div>
 
-<div class="row">
-  <div class="col-md-12" style="text-align: center">
-    <a href="">
-      <h4 ng-hide="config.last_page === nextPage-1 || subThreads.length === 0"  ng-click="getSubscribedThreads(nextPage, config.orderType)">Next Page..</h4>
-    </a>
-  </div>
-</div>

@@ -94,7 +94,9 @@ angular
       .when('/sub/:id', {
         templateUrl: 'scripts/Threads/threads.html',
         controller: 'ThreadsCtrl',
-        controllerAs: 'threads'
+        controllerAs: 'threads',
+        reloadOnSearch:false
+
       })
 
       .when('/sub/:id/comments/:thread_id', {

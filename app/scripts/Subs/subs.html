@@ -48,6 +48,7 @@
         <th>Desc</th>
         <th>Created by</th>
         <th>Threads Count</th>
+        <th>Subscribers Count</th>
         <th ng-if="user"></th>
         </thead>
         <thead ng-if="subs">
@@ -56,6 +57,7 @@
           <td>{{sub.description}}</td>
           <td><a href="#/user/{{sub.user_name}}">{{sub.user_name}}</a></td>
           <td>{{sub.threads_count}}</td>
+          <td>{{sub.subscribers_count}}</td>
           <td ng-if="user" style="text-align: right">
             <span ng-if="!sub.subscribed" class="label label-success sub-label" ng-click="subscribeToSub(sub)"><i
               class="fa fa-check"></i> Subscribe</span>

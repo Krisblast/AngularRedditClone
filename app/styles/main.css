@@ -91,12 +91,7 @@ body {
 }
 
 
-.highlightVoteUp {
-  color: #ff8a5e;
-}
-.highlightVoteDown {
-  color: #9494ff;
-}
+
 .sub-label {
   padding: 6px;
   cursor: pointer;
@@ -129,4 +124,20 @@ body {
   /* text-decoration: underline; */
   font-weight: bold;
   color: #ff8a5e;
+}
+
+.voteIcon {
+  cursor: pointer;
+}
+
+.voteIcon:hover {
+  color: grey;
+}
+.highlightVoteUp {
+  color: #ff8a5e !important;
+  cursor: default;
+}
+.highlightVoteDown {
+  color: #9494ff !important;
+  cursor: default;
 }
