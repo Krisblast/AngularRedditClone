@@ -59,10 +59,7 @@
           <td>{{sub.threads_count}}</td>
           <td>{{sub.subscribers_count}}</td>
           <td ng-if="user" style="text-align: right">
-            <span ng-if="!sub.subscribed" class="label label-success sub-label" ng-click="subscribeToSub(sub)"><i
-              class="fa fa-check"></i> Subscribe</span>
-            <span ng-if="sub.subscribed" class="label label-danger sub-label" ng-click="unsubscribeToSub(sub)"><i
-              class="fa fa-ban"></i> Unsubscribe</span>
+            <subscribe-btn sub="sub"></subscribe-btn>
           </td>
         </tr>
         </thead>

@@ -1,0 +1,4 @@
+<span ng-if="!$ctrl.sub.subscribed" class="label label-success sub-label" ng-click="$ctrl.subscribeToSub($ctrl.sub)"><i
+  class="fa fa-check"></i> Subscribe</span>
+<span ng-if="$ctrl.sub.subscribed" class="label label-danger sub-label" ng-click="$ctrl.unsubscribeToSub($ctrl.sub)"><i
+  class="fa fa-ban"></i> Unsubscribe</span>

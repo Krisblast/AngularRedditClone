@@ -47,18 +47,5 @@ angular.module('appApp')
     }
 
 
-
-    $scope.subscribeToSub = function (sub) {
-      subscribeService.subscribeToSub(sub.id).then(function () {
-        sub.subscribed = true;
-      });
-    };
-
-    $scope.unsubscribeToSub = function (sub) {
-      subscribeService.unsubscribeToSub(sub.id).then(function () {
-        sub.subscribed = false;
-      });
-    };
-
     getSubs();
   });
